@@ -38,7 +38,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       const updatedCart = [...cart];  //trazer os valores em cart parar dentro de um novo array, regra da imutabilidade
       const productInCart = updatedCart.find(product => product.id === productId);
 
-      const stock = await api.get(`/stock/${productId}`);
+      const stock = await api.get<Stock>(`/stock/${productId}`);
 
       const stockAmount = stock.data.amount;
       const currentAmount = productInCart ? productInCart.amount : 0;
